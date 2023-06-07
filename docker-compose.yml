@@ -25,6 +25,22 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+  #   networks:
+  #     - postgres
+
+  # pgadmin:
+  #   links:
+  #     - postgres:postgres
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - /data/pgadmin:/root/.pgadmin
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - postgres
 
   redis:
     image: redis:latest
@@ -37,4 +53,7 @@ services:
       - REDIS_HOST=${REDIS_HOST}
     volumes:
       - ./redisdata:/data
-
+ 
+# networks:
+#   postgres:
+#     driver: bridge
